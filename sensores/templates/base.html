@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} {% endblock%}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <img src="{% static 'css/img/logo.png' %}" alt="Projeto Logo">
+            <span>Super Motors</span>
+        </div>
+        <div class="right">
+            <a class= "btn" href="{% url 'home' %}">Home</a> 
+            <a class= "btn" href="{% url 'motor_list' %}">Motores</a>          
+            <a class= "btn" href="{% url 'sensor_list' %}">Sensores</a>
+            <a class= "btn" href="{% url 'dadossensor_list' %}">Dados dos Sensores</a>
+            <a class= "btn" href="{% url 'sensormotor_list'%}">Associação Sensor - Motor</a>
+            <br>
+            <span>
+                <img src="" alt="Configurações">
+                <p>Configurações</p>
+            </span>
+            
+
+        </div>
+    </header>
+
+    <main>
+        {% block content %} 
+
+        {% endblock %}
+    </main>
+
+</body>
+<footer>
+    <span>Projeto de Monitoramento de Sensores - Super Motors &copy; 2025 - Direitos Reservados</span>
+</footer>
+</html>

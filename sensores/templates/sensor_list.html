@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Lista de Sensores {% endblock %}
+
+{% block content %}
+
+<a href="{% url 'sensor_form' %}"> Novo Sensor</a>
+
+{%for motor in object_list%}
+<ul>
+    
+    <li>Id do Sensor: {{Sensor.Id}}</li>
+    <li>Tipo do Sensor: {{Sensor.Tipo}}</li>
+    <li>Nome do Sensor: {{Sensor.Nome}}</li>
+    
+</ul>
+    <span class="Decição">
+    <a href="{% url 'sensor_form' %}">Editar</a>
+    </span>
+    <span class="Decição0">
+    <a href="{% url 'sensor_delete' %}">Excluir</a>
+    </span>
+
+{%endfor%}
+
+{% endblock %}

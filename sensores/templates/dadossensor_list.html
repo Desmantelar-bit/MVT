@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}  {% endblock %}
+
+{% block content %}
+
+<a href="{% url 'dadossensor_form' %}"> Novo Dado do Sensor</a>
+
+{%for dadossensor in object_list%}
+    
+{% endblock %}

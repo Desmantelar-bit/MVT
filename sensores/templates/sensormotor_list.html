@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Lista de Motores {% endblock %}
+
+{% block content %}
+
+<a href="{% url 'sensormotor_form'%}">Nova assosiação</a>
+
+{%for motor in object_list%}
+
+<ul>
+    <h3>Associação</h3>
+    <li>Id: {{sensormotor.Id}}</li>
+    <li>Id do Motor: {{sensormotor.MotorId}}</li>
+    <li>Id do Sensor: {{sensormotor.SensorId}}</li>
+
+    
+</ul>
+<li>
+{% comment %} <a href="{% url 'motor_form' motor.pk %}">Editar</a>
+<a href="{% url 'motor_delete' motor.pk %}">Excluir</a> {% endcomment %}
+</li>
+{%endfor%}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Formulário de Sensor {% endblock %}
+
+{% block content %}
+
+<br>
+
+<form action ="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar Sensor</button>
+    
+</form>
+{% endblock %}

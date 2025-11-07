@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a, a:visited, a:hover, a:active{
+    text-decoration: none;
+    
+}
+
+body{
+    display: grid;
+    grid-template-columns: 12fr;
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: "h"
+                         "m"
+                         "f";
+}
+
+header{
+    grid-area: h;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+header > div > img{
+    height: 60px;
+}
+
+.left span{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    float: left;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: white;
+}
+.btn{
+    padding: 8px 16px;
+    background-color: #4036749f;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    transition: color 0.3s ease;
+
+}
+
+main{
+    grid-area: m;
+    background-color: #f4f4f4;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer{
+    grid-area: f;
+    background-color: #525151;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tico{
+    padding: 8px 16px;
+    background-color: #332b629f;
+    border: none;
+    border-radius: 32px;
+    color: white;
+}
+
+.Decição{
+        padding: 8px 16px;
+    background-color: #5e7ac2;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+    }
+.Decição0 {
+    padding: 8px 16px;
+    background-color: #5e7ac2;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    margin-right: 10px;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Lista de Motores {% endblock %}
+
+{% block content %}
+<br>
+
+<form action ="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar Motor</button>
+    
+
+
+</form>
+{% endblock %}

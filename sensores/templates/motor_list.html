@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} Lista de Motores {% endblock %}
+<style>
+    a{
+        text-decoration: none;
+        color:black
+    }
+    .tico{
+        padding: 8px 16px;
+        background-color: #4a89cd;
+        border: none;
+        border-radius: 32px;
+        color: blueviolet;
+
+    }
+</style>
+
+{% block content %}
+<br>
+
+<a class = "tico" href="{% url 'motor_form' %}">Novo Motor</a>
+<br><br>
+{%for motor in object_list%}
+
+<ul>
+    <h3>Motor</h3>
+    <li>Modelo: {{motor.Modelo}}</li>
+    <li>Marca: {{motor.Marca}}</li>
+    <li>Potência: {{motor.Potencia}}</li>
+    <li>Descrição: {{motor.Descricao}}</li>
+    
+</ul>
+<br>
+<span class="Decição">
+<a class= "ticos" href="{% url 'motor_form' motor.pk %}">Editar</a>
+</span>
+<span class="Decição0">
+<a class="ticos" href="{% url 'motor_delete' motor.pk %}">Excluir</a>
+</span>
+<br><br>
+{%endfor%}
+
+{% endblock %}
