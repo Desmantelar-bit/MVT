@@ -3,6 +3,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from sensores.models import Sensor, Motor, DadosSensor, SensorMotor
 from django.urls import reverse_lazy
 from .form import SensorForm, MotorForm, DadosSensorForm, SensorMotorForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 def dashboard(request):
@@ -20,91 +22,91 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
-class SensorListView(ListView):
+class SensorListView(LoginRequiredMixin, ListView):
     model = Sensor
     template_name = 'sensor_list.html'
     success_url = reverse_lazy('home_list')
 
-class SensorCreateView(CreateView):
+class SensorCreateView(LoginRequiredMixin, CreateView):
     model = Sensor
     form_class = SensorForm
     template_name = 'sensor_form.html'
     success_url = reverse_lazy('sensor_list')
 
-class SensorUpdateView(UpdateView):
+class SensorUpdateView(LoginRequiredMixin, UpdateView):
     model = Sensor
     form_class = SensorForm
     template_name = 'sensor_form.html'
     success_url = reverse_lazy('sensor_list')
 
-class SensorDeleteView(DeleteView):
+class SensorDeleteView(LoginRequiredMixin, DeleteView):
     model = Sensor
     template_name = 'sensor_confirm_delete.html'
     success_url = reverse_lazy('sensor_list')
 
-class MotorListView(ListView):
+class MotorListView(LoginRequiredMixin, ListView):
     model = Motor
     template_name = 'motor_list.html'
-    sucess_url = reverse_lazy('home_list')
+    success_url = reverse_lazy('home_list')
 
-class MotorCreateView(CreateView):
+class MotorCreateView(LoginRequiredMixin, CreateView):
     model = Motor
     form_class = MotorForm
     template_name = 'motor_form.html'
     success_url = reverse_lazy('motor_list')
 
-class MotorUpdateView(UpdateView):
+class MotorUpdateView(LoginRequiredMixin, UpdateView):
     model = Motor
     form_class = MotorForm
     template_name = 'motor_form.html'
     success_url = reverse_lazy('motor_list')
 
-class MotorDeleteView(DeleteView):
+class MotorDeleteView(LoginRequiredMixin, DeleteView):
     model = Motor
     template_name = 'motor_confirm_delete.html'
     success_url = reverse_lazy('motor_list')
 
-class DadosSensorListView(ListView):
+class DadosSensorListView(LoginRequiredMixin, ListView):
     model = DadosSensor
     template_name = 'dadossensor_list.html'
     sucess_url = reverse_lazy('home_list')
 
-class DadosSensorCreateView(CreateView):
+class DadosSensorCreateView(LoginRequiredMixin, CreateView):
     model = DadosSensor
     template_name = 'dadossensor_form.html'
     success_url = reverse_lazy('dadossensor_list')
 
-class DadosSensorUpdateView(UpdateView):
+class DadosSensorUpdateView(LoginRequiredMixin, UpdateView):
     model = DadosSensor
     template_name = 'dadossensor_form.html'
     success_url = reverse_lazy('dadossensor_list')
 
-class DadosSensorDeleteView(DeleteView):
+class DadosSensorDeleteView(LoginRequiredMixin, DeleteView):
     model = DadosSensor
     template_name = 'dadossensor_confirm_delete.html'
     success_url = reverse_lazy('dadossensor_list')
 
-class SensorMotorListView(ListView):
+class SensorMotorListView(LoginRequiredMixin, ListView):
     model = SensorMotor
     template_name = 'sensormotor_list.html'
     sucess_url = reverse_lazy('home_list')
 
-class SensorMotorCreateView(CreateView):
+class SensorMotorCreateView(LoginRequiredMixin, CreateView):
     model = SensorMotor
     template_name = 'sensormotor_form.html'
     fields = ['MotorId', 'SensorId']
     success_url = reverse_lazy('sensormotor_list')
 
-class SensorMotorUpdateView(UpdateView):
+class SensorMotorUpdateView(LoginRequiredMixin,UpdateView):
     model = SensorMotor
     template_name = 'sensormotor_form.html'
     success_url = reverse_lazy('sensormotor_list')
 
-class SensorMotorDeleteView(DeleteView):
+class SensorMotorDeleteView(LoginRequiredMixin, DeleteView):
     model = SensorMotor
     template_name = 'sensormotor_confirm_delete.html'
     success_url = reverse_lazy('sensormotor_list')
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin, ListView):
     model = Motor
     template_name = 'home.html'

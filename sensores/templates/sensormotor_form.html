@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}  {% endblock %}
+{% block title %} Criar / alterar associação {% endblock %}
 
 {% block content %}
+<br>
+
+<form action ="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar Associação</button>
+    
+
+
+</form>
     
 {% endblock %}

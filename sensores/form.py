@@ -26,9 +26,8 @@ class MotorForm(forms.ModelForm):
 class SensorMotorForm(forms.ModelForm):
     class Meta:
         model = SensorMotor
-        fields = ['Id','MotorId', 'SensorId']
+        fields = ['MotorId', 'SensorId']
         labels = {
-            'Id': 'ID da Associação',
             'MotorId': 'Motor',
             'SensorId': 'Sensor',
         }

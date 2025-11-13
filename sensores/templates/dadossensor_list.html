@@ -1,11 +1,46 @@
 {% extends "base.html" %}
+ <style>
+ .Decição{
+        padding: 8px 16px;
+    background-color: #5e7ac2;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+    }
+.Decição0 {
+    padding: 8px 16px;
+    background-color: #5e7ac2;
+    border: none;
+    border-radius: 32px;
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+    }
+ </style>
 
-{% block title %}  {% endblock %}
+{% block title %} Listagem de dados dos sensores{% endblock %}
 
 {% block content %}
 
 <a href="{% url 'dadossensor_form' %}"> Novo Dado do Sensor</a>
 
 {%for dadossensor in object_list%}
+<ul>
+    
+    <li>Data e Hora: {{dadossensor.DataHora}}</li>
+    <li>Sensor: {{dadossensor.SensorId.Nome}}</li>
+    <li>Motor: {{dadossensor.MotorId.Marca}} {{dadossensor.MotorId.Modelo}}</li>
+    <li>Valor: {{dadossensor.Valor}}</li>
+</ul>
+    <span class="Decição">
+    <a href="{% url 'dadossensor_form' dadossensor.pk %}">Editar</a>
+    </span>
+    <span class="Decição0">
+    <a href="{% url 'dadossensor_delete' dadossensor.pk %}">Excluir</a>
+    </span>
+
+{%endfor%}
     
 {% endblock %}

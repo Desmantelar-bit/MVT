@@ -5,21 +5,24 @@
 {% block content %}
 
 <a href="{% url 'sensor_form' %}"> Novo Sensor</a>
+<br>
 
 {%for motor in object_list%}
+<br>
 <ul>
-    
+    <h3>Sensor</h3>
     <li>Id do Sensor: {{Sensor.Id}}</li>
     <li>Tipo do Sensor: {{Sensor.Tipo}}</li>
     <li>Nome do Sensor: {{Sensor.Nome}}</li>
     
 </ul>
+<br>
     <span class="Decição">
-    <a href="{% url 'sensor_form' %}">Editar</a>
+        <a href="{% url 'sensor_form' %}">Editar</a>
     </span>
-    <span class="Decição0">
-    <a href="{% url 'sensor_delete' %}">Excluir</a>
-    </span>
+    
+<br>
+
 
 {%endfor%}
 

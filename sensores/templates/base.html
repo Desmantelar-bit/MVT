@@ -15,17 +15,21 @@
         </div>
         <div class="right">
             <a class= "btn" href="{% url 'home' %}">Home</a> 
+            <a class= "btn" href="{% url 'dashboard' %}">Dashboard</a>
             <a class= "btn" href="{% url 'motor_list' %}">Motores</a>          
             <a class= "btn" href="{% url 'sensor_list' %}">Sensores</a>
             <a class= "btn" href="{% url 'dadossensor_list' %}">Dados dos Sensores</a>
             <a class= "btn" href="{% url 'sensormotor_list'%}">Associação Sensor - Motor</a>
+    
+            <form method="post" action="{% url 'logout' %}" style="display: inline;" >
+                {% csrf_token %}
+                <button type="submit" class="btn" style="color: red">Logout</button>
+            </form>
             <br>
-            <span>
-                <img src="" alt="Configurações">
-                <p>Configurações</p>
-            </span>
+            <div class="user-info">
+                <a href="{% url 'profile' %}"><img src="" alt="Foto de Perfil" class="profile-pic"></a>
+            </div>
             
-
         </div>
     </header>
 
@@ -36,6 +40,7 @@
     </main>
 
 </body>
+
 <footer>
     <span>Projeto de Monitoramento de Sensores - Super Motors &copy; 2025 - Direitos Reservados</span>
 </footer>

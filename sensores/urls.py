@@ -25,6 +25,7 @@ from django.urls import include
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    # path('', dashboard, name='dashboard'),
 
     # Sensor URLs
     path('sensors/', SensorListView.as_view(), name='sensor_list'),
