@@ -20,7 +20,7 @@ from sensores.views import SensorListView, SensorCreateView, SensorUpdateView, S
 from sensores.views import MotorListView, MotorCreateView, MotorUpdateView, MotorDeleteView
 from sensores.views import DadosSensorListView, DadosSensorCreateView, DadosSensorUpdateView,  DadosSensorDeleteView
 from sensores.views import SensorMotorListView, SensorMotorCreateView, SensorMotorUpdateView, SensorMotorDeleteView
-from sensores.views import HomeView
+from sensores.views import HomeView, dashboard
 from django.urls import include
 
 urlpatterns = [
@@ -50,4 +50,6 @@ urlpatterns = [
     path('sensormotors/<int:pk>/edit/', SensorMotorUpdateView.as_view(), name='sensormotor_form'),
     path('sensormotors/<int:pk>/delete/', SensorMotorDeleteView.as_view(), name='sensormotor_delete'),
     
+    # Dashboard URLs
+    path('dashboard/', dashboard , name='dashboard'),
     ]
