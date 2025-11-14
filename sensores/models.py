@@ -23,7 +23,7 @@ class SensorMotor(models.Model):
     SensorId = models.ForeignKey(Sensor, on_delete=models.DO_NOTHING)
 
 class DadosSensor(models.Model):
-    Id = models.CharField(primary_key=True, max_length=10)
+    id = models.AutoField(primary_key=True)
     DataHora = models.DateTimeField(auto_now=True)
     MotorId = models.ForeignKey(Motor, on_delete=models.DO_NOTHING )
     SensorId = models.ForeignKey(Sensor, on_delete=models.DO_NOTHING)

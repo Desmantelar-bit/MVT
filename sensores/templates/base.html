@@ -27,7 +27,7 @@
             </form>
             <br>
             <div class="user-info">
-                <a href="{% url 'profile' %}"><img src="" alt="Foto de Perfil" class="profile-pic"></a>
+                <a href="{% url 'profile' %}"><img src="{% static 'css/img/user.png' %}" alt="Foto de Perfil" class="profile-pic"></a>
             </div>
             
         </div>
@@ -39,9 +39,9 @@
         {% endblock %}
     </main>
 
+    <footer>
+        <span>Projeto de Monitoramento de Sensores - Super Motors &copy; 2025 - Direitos Reservados</span>
+    </footer>
 </body>
 
-<footer>
-    <span>Projeto de Monitoramento de Sensores - Super Motors &copy; 2025 - Direitos Reservados</span>
-</footer>
 </html>

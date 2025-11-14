@@ -1,24 +1,47 @@
 {% extends "base.html" %}
 
 {% block title %} Lista de Sensores {% endblock %}
+<style>
+    .tico{
+        padding: 8px 16px;
+        background-color: #4a89cd;
+        border: none;
+        border-radius: 32px;
+        color: blueviolet;
+
+    }
+    .update{
+        padding: 8px 16px;
+        background-color: #4f3eae9f;
+        border: none;
+        border-radius: 32px;
+        color: white;
+    }
+
+</style>
+
 
 {% block content %}
 
-<a href="{% url 'sensor_form' %}"> Novo Sensor</a>
+<br>
+<a href="{% url 'sensor_form' %}" class="tico"> Novo Sensor</a>
 <br>
 
-{%for motor in object_list%}
+{%for sensor in object_list%}
 <br>
 <ul>
     <h3>Sensor</h3>
-    <li>Id do Sensor: {{Sensor.Id}}</li>
-    <li>Tipo do Sensor: {{Sensor.Tipo}}</li>
-    <li>Nome do Sensor: {{Sensor.Nome}}</li>
+    <li>Id do Sensor: {{sensor.Id}}</li>
+    <li>Tipo do Sensor: {{sensor.Tipo}}</li>
+    <li>Nome do Sensor: {{sensor.Nome}}</li>
     
 </ul>
 <br>
-    <span class="Decição">
-        <a href="{% url 'sensor_form' %}">Editar</a>
+    <span>
+        <a href="{% url 'sensor_form' %}" class="update">Editar</a>
+    </span>
+    <span>
+        <a href="{% url 'sensor_delete' sensor.pk %}" class="update">Deletar</a>
     </span>
     
 <br>

@@ -21,12 +21,18 @@ from sensores.views import MotorListView, MotorCreateView, MotorUpdateView, Moto
 from sensores.views import DadosSensorListView, DadosSensorCreateView, DadosSensorUpdateView,  DadosSensorDeleteView
 from sensores.views import SensorMotorListView, SensorMotorCreateView, SensorMotorUpdateView, SensorMotorDeleteView
 from sensores.views import HomeView, dashboard
-from django.urls import include
+from sensores.views import api_ultimos_dados
+
 
 urlpatterns = [
+    # Homeage URL
     path('', HomeView.as_view(), name='home'),
-    # path('', dashboard, name='dashboard'),
 
+    # Dashboard URLs
+    path('dashboard/', dashboard , name='dashboard'),
+    # API para últimos dados (JSON)
+    path('api/ultimos-dados/', api_ultimos_dados, name='api_ultimos_dados'),
+    
     # Sensor URLs
     path('sensors/', SensorListView.as_view(), name='sensor_list'),
     path('sensors/add/', SensorCreateView.as_view(), name='sensor_form'),
@@ -51,6 +57,4 @@ urlpatterns = [
     path('sensormotors/<int:pk>/edit/', SensorMotorUpdateView.as_view(), name='sensormotor_form'),
     path('sensormotors/<int:pk>/delete/', SensorMotorDeleteView.as_view(), name='sensormotor_delete'),
     
-    # Dashboard URLs
-    path('dashboard/', dashboard , name='dashboard'),
     ]

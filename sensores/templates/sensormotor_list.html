@@ -4,9 +4,11 @@
 
 {% block content %}
 
-<a href="{% url 'sensormotor_form'%}">Nova assosiação</a>
+<br>
+<a href="{% url 'sensormotor_form'%}" class="tico">Nova assosiação</a>
+<br><br>
 
-{%for motor in object_list%}
+{%for sensormotor in object_list%}
 
 <ul>
     <h3>Associação</h3>
@@ -17,8 +19,9 @@
     
 </ul>
 <li>
-{% comment %} <a href="{% url 'motor_form' motor.pk %}">Editar</a>
-<a href="{% url 'motor_delete' motor.pk %}">Excluir</a> {% endcomment %}
+    <br>
+    <a href="{% url 'sensormotor_form' sensormotor.pk %}" class="btn-fill">Editar</a>
+    <a href="{% url 'sensormotor_delete' sensormotor.pk %}" class="btn-fill">Deletar</a>
 </li>
 {%endfor%}
 

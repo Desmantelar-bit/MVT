@@ -38,4 +38,40 @@
     </tbody>
 </table>
 
+<script>
+// Função para renderizar linhas a partir do JSON recebido
+function renderRows(data){
+    const tbody = document.querySelector('table tbody');
+    tbody.innerHTML = '';
+    if(!data || data.length === 0){
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td colspan="4">Nenhum dado encontrado.</td>';
+        tbody.appendChild(tr);
+        return;
+    }
+    data.forEach(d => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${d.datahora}</td><td>${d.sensor_nome}</td><td>${d.motor_marca} ${d.motor_modelo}</td><td>${d.valor}</td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+// Polling a cada 5 segundos
+async function fetchUltimos(){
+    try{
+        const resp = await fetch('{% url "api_ultimos_dados" %}');
+        if(!resp.ok) throw new Error('Erro na requisição');
+        const json = await resp.json();
+        renderRows(json.ultimos_dados);
+    }catch(e){
+        console.error('Falha ao obter dados:', e);
+    }
+}
+
+// Inicia polling
+setInterval(fetchUltimos, 5000);
+// Carrega imediatamente
+fetchUltimos();
+</script>
+
 {% endblock %}

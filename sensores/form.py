@@ -35,10 +35,10 @@ class SensorMotorForm(forms.ModelForm):
 class DadosSensorForm(forms.ModelForm):
     class Meta:
         model = DadosSensor
-        fields = ['Id','MotorId','SensorId', 'Valor']
+        fields = ['id','MotorId','SensorId', 'Valor']
         labels = {
 
-            'Id': 'ID do Dado',
+            'id': 'ID do Dado',
             'MotorId': 'Motor',
             'SensorId': 'Sensor',
             'Valor': 'Valor do Sensor',

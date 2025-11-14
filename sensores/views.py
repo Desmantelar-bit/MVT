@@ -4,6 +4,7 @@ from sensores.models import Sensor, Motor, DadosSensor, SensorMotor
 from django.urls import reverse_lazy
 from .form import SensorForm, MotorForm, DadosSensorForm, SensorMotorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -21,6 +22,24 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+
+
+def api_ultimos_dados(request):
+    """Retorna JSON com os últimos 10 registros de DadosSensor."""
+    ultimos = DadosSensor.objects.order_by('-DataHora')[:10]
+    data = []
+    for d in ultimos:
+        data.append({
+            'id': d.id,
+            'datahora': d.DataHora.strftime('%Y-%m-%d %H:%M:%S'),
+            'sensor_id': d.SensorId.Id,
+            'sensor_nome': d.SensorId.Nome,
+            'motor_id': d.MotorId.Id,
+            'motor_marca': d.MotorId.Marca,
+            'motor_modelo': d.MotorId.Modelo,
+            'valor': d.Valor,
+        })
+    return JsonResponse({'ultimos_dados': data})
 
 class SensorListView(LoginRequiredMixin, ListView):
     model = Sensor
