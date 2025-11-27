@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Perfil{% endblock %}
 {% block content %}
-<h1>Bem-vindo, {{ user.first_name }} {{ user.last_name }}!</h1>
+<div class="topo-lista">
+    <h1>Bem-vindo {{ user.first_name }} {{ user.last_name }}!</h1>
     <p>E-mail: {{ user.email }}</p>
+</div>
    
+<div class="topo-lista">   
     <a href="{% url 'editar_profile' %}">Editar Perfil</a>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>
     </form>
+</div>
 {% endblock %}

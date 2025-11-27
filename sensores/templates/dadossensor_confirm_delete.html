@@ -3,5 +3,11 @@
 {% block title %} Confirmação de exclusão de dados {% endblock %}
 
 {% block content %}
-    
+    <h2>Tem certeza que deseja excluir o <b> Dado do Sensor<b><span>{{ object.Modelo }}<span>?</h2>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+    <a href="{% url 'motor_list' %}">Cancelar</a>
+
+</form>
 {% endblock %}

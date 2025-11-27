@@ -10,5 +10,6 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Salvar Sensor</button>
+    <a href="{% url 'sensor_list' %}">Cancelar</a>
 </form>
 {% endblock %}

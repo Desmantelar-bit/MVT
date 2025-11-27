@@ -17,6 +17,26 @@ body{
                          "m"
                          "f";
 }
+/* .dashboard-content{
+    background-image: url('http://127.0.0.1:8000/static/img/motores.png');
+    background-size: cover;
+    background-position: center;
+    height: 125%;
+    
+
+}
+
+.dashboard-content::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: -1;
+    text-color: white;
+} */
 
 header{
     grid-area: h;
@@ -135,5 +155,7 @@ footer{
         padding: 16px;
     }
 } 
+
+
 
 

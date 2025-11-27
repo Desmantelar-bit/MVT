@@ -1,77 +1,85 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 
+
 {% block content %}
-<br>
-<h1 style= 'text-align: center;'>Dashboard de Sensores</h1>
+<div class="dashboard-content">
+    <div class="topo-lista">
+        <h1 style= 'text-align: center; text-color: wigth'>Dashboard de Sensores</h1><br>
 
-<h2>Resumo</h2>
-<ul>
-    <li>Total de Motores: {{ total_motores }}</li>
-    <li>Total de Sensores: {{ total_sensores }}</li>
-    <li>Total de Relações Sensor-Motor: {{ total_sensor_motor }}</li>
-</ul>
- <br>
-<h2 style= 'text-align: center;'>Últimos 10 Registros de Dados do Sensor</h2>
-<table border="1" style= 'text-align: center;'>
-    <thead style= 'text-align: center;'>
-        <tr>
-            <th>Data/Hora</th>
-            <th>Sensor</th>
-            <th>Motor</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody style= 'text-align: center;'>
-        {% for dado in ultimos_dados %}
-        <tr>
-            <td>{{ dado.DataHora }}</td>
-            <td>{{ dado.SensorId.Nome }}</td>
-            <td>{{ dado.MotorId.Marca }} {{ dado.MotorId.Modelo }}</td>
-            <td>{{ dado.Valor }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">Nenhum dado encontrado.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <h2>Resumo</h2>
+        <ul>
+            <li>Total de Motores: {{ total_motores }}</li>
+            <li>Total de Sensores: {{ total_sensores }}</li>
+            <li>Total de Relações Sensor-Motor: {{ total_sensor_motor }}</li>
+        </ul>
+    </div>
 
-<script>
-// Função para renderizar linhas a partir do JSON recebido
-function renderRows(data){
-    const tbody = document.querySelector('table tbody');
-    tbody.innerHTML = '';
-    if(!data || data.length === 0){
-        const tr = document.createElement('tr');
-        tr.innerHTML = '<td colspan="4">Nenhum dado encontrado.</td>';
-        tbody.appendChild(tr);
-        return;
-    }
-    data.forEach(d => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${d.datahora}</td><td>${d.sensor_nome}</td><td>${d.motor_marca} ${d.motor_modelo}</td><td>${d.valor}</td>`;
-        tbody.appendChild(tr);
-    });
-}
+    <div class="topo-lista">
+        <h2 style= 'text-align: center;'>Últimos 10 Registros de Dados do Sensor</h2>
+        <table border="1" style= 'text-align: center; justify-content: center;'>
+            <thead style= 'text-align: center;'>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Sensor</th>
+                    <th>Motor</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody style= 'text-align: center;'>
+                {% for dado in ultimos_dados %}
+                <tr>
+                    <td>{{ dado.DataHora }}</td>
+                    <td>{{ dado.SensorId.Nome }}</td>
+                    <td>{{ dado.MotorId.Marca }} {{ dado.MotorId.Modelo }}</td>
+                    <td>{{ dado.Valor }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">Nenhum dado encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-// Polling a cada 5 segundos
-async function fetchUltimos(){
-    try{
-        const resp = await fetch('{% url "api_ultimos_dados" %}');
-        if(!resp.ok) throw new Error('Erro na requisição');
-        const json = await resp.json();
-        renderRows(json.ultimos_dados);
-    }catch(e){
-        console.error('Falha ao obter dados:', e);
-    }
-}
+        <script>
+        // Função para renderizar linhas a partir do JSON recebido
+        function renderRows(data){
+            const tbody = document.querySelector('table tbody');
+            tbody.innerHTML = '';
+            if(!data || data.length === 0){
+                const tr = document.createElement('tr');
+                tr.innerHTML = '<td colspan="4">Nenhum dado encontrado.</td>';
+                tbody.appendChild(tr);
+                return;
+            }
+            data.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${d.datahora}</td><td>${d.sensor_nome}</td><td>${d.motor_marca} ${d.motor_modelo}</td><td>${d.valor}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
 
-// Inicia polling
-setInterval(fetchUltimos, 5000);
-// Carrega imediatamente
-fetchUltimos();
-</script>
+        // Polling a cada 5 segundos
+        async function fetchUltimos(){
+            try{
+                const resp = await fetch('{% url "api_ultimos_dados" %}');
+                if(!resp.ok) throw new Error('Erro na requisição');
+                const json = await resp.json();
+                renderRows(json.ultimos_dados);
+            }catch(e){
+                console.error('Falha ao obter dados:', e);
+            }
+        }
+
+        // Inicia polling
+        setInterval(fetchUltimos, 5000);
+        // Carrega imediatamente
+        fetchUltimos();
+        </script>
+
+    </div>
+
+</div>
 
 {% endblock %}

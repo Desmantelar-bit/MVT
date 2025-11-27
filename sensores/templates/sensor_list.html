@@ -1,36 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %} Lista de Sensores {% endblock %}
-<style>
-    .tico{
-        padding: 8px 16px;
-        background-color: #4a89cd;
-        border: none;
-        border-radius: 32px;
-        color: blueviolet;
-
-    }
-    .update{
-        padding: 8px 16px;
-        background-color: #4f3eae9f;
-        border: none;
-        border-radius: 32px;
-        color: white;
-    }
-
-</style>
-
 
 {% block content %}
 
-<br>
-<a href="{% url 'sensor_form' %}" class="tico"> Novo Sensor</a>
-<br>
+<div class="topo-lista">
+    <h2>Lista de Sensores</h2><br>
+    <a class = "tico" href="{% url 'sensor_form' %}">Novo Sensor</a>
+    <br><br>
+    <hr>
+</div>
 
 {%for sensor in object_list%}
 <br>
+<div class="topo-lista">
 <ul>
-    <h3>Sensor</h3>
+    <h3>Sensor</h3><br>
     <li>Id do Sensor: {{sensor.Id}}</li>
     <li>Tipo do Sensor: {{sensor.Tipo}}</li>
     <li>Nome do Sensor: {{sensor.Nome}}</li>
@@ -38,14 +23,13 @@
 </ul>
 <br>
     <span>
-        <a href="{% url 'sensor_form' %}" class="update">Editar</a>
-    </span>
-    <span>
-        <a href="{% url 'sensor_delete' sensor.pk %}" class="update">Deletar</a>
-    </span>
-    
-<br>
+        <a href="{% url 'sensor_form' %}" class="btn-fill">Editar</a>
 
+        <a href="{% url 'sensor_delete' sensor.pk %}" class="btn-fill">Deletar</a>
+    </span>
+</div>
+<br><br>
+<hr>
 
 {%endfor%}
 

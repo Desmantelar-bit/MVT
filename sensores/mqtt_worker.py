@@ -16,7 +16,7 @@ from sensores.models import DadosSensor, Motor, Sensor
 
 # Dados da conexão MQTT
 BROKER = "leopard.lmq.cloudamqp.com"  # Host do broker
-PORT = 8883  # Porta padrão MQTT (tente 8883 se não funcionar)
+PORT = 1883  # Porta MQTT padrão sem TLS (use 1883 para conexão não segura)
 TOPICO = "dadosSensor"  # Tópico a ser assinado
 USERNAME = "idoufayf:idoufayf"  # Usuário do broker
 PASSWORD = "DpH2tqSXK2l4s3tx5DNr3_ppS9aYGTis"  # Senha do broker
@@ -128,13 +128,17 @@ def on_message(client, userdata, msg):
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 client.username_pw_set(USERNAME, PASSWORD)  # Define usuário e senha no cliente MQTT
 
-# Configurar TLS/SSL (CloudAMQP recomenda)
-try:
-    client.tls_set(ca_certs=None, certfile=None, keyfile=None, cert_reqs=ssl.CERT_NONE, tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
-    client.tls_insecure_set(True)
-    print("[CONFIG] TLS habilitado")
-except Exception as e:
-    print(f"[AVISO] Não foi possível configurar TLS: {e}")
+# Configurar TLS/SSL somente quando porta indicar TLS (ex.: 8883)
+if PORT == 8883:
+    try:
+        client.tls_set(ca_certs=None, certfile=None, keyfile=None, cert_reqs=ssl.CERT_NONE, tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
+        client.tls_insecure_set(True)
+        print("[CONFIG] TLS habilitado (porta 8883)")
+    except Exception as e:
+        print(f"[AVISO] Não foi possível configurar TLS: {e}")
+else:
+    # Porta típica sem TLS - 1883
+    print("[CONFIG] TLS não habilitado (porta 1883 detectada)")
 
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect

@@ -11,7 +11,8 @@
     <header>
         <div class="left">
             <img src="{% static 'css/img/logo.png' %}" alt="Projeto Logo">
-            <span>Super Motors</span>
+            <a href="{% url 'home' %}"><span>Super Motors</span></a>
+            
         </div>
         <div class="right">
             <a class= "btn" href="{% url 'home' %}">Home</a> 

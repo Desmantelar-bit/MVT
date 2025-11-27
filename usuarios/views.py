@@ -25,5 +25,6 @@ class EditPerfilView(LoginRequiredMixin, UpdateView):
     form_class = EditPerfilForm
     template_name = 'edit_perfil.html'
     success_url = reverse_lazy('profile')
+    
     def get_object(self):
         return self.request.user

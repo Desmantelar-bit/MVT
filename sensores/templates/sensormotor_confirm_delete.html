@@ -3,5 +3,12 @@
 {% block title %} Confirmação para deletar assosiação {% endblock %}
 
 {% block content %}
+    <h2>Tem certeza que deseja excluir a <b> Associação (motor-sensor)<b><span>{{ object.Modelo }}<span>?</h2>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+    <a href="{% url 'sensormotor_list' %}">Cancelar</a>
+
+</form>
     
 {% endblock %}

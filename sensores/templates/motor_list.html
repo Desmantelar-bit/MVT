@@ -3,14 +3,20 @@
 {% block title %} Lista de Motores {% endblock %}
 
 {% block content %}
-<br>
 
-<a class = "tico" href="{% url 'motor_form' %}">Novo Motor</a>
-<br><br>
+<div class="topo-lista">
+    <h2>Lista de Motores</h2><br>
+    <a class = "tico" href="{% url 'motor_form' %}">Novo Motor</a>
+    <br><br>
+
+</div>
+
+<hr>
 {%for motor in object_list%}
-
+<div class="topo-lista">
+<br>
 <ul>
-    <h3>Motor</h3>
+    <h3>Motor</h3><br>
     <li>Modelo: {{motor.Modelo}}</li>
     <li>Marca: {{motor.Marca}}</li>
     <li>Potência: {{motor.Potencia}}</li>
@@ -18,13 +24,15 @@
     
 </ul>
 <br>
-<span class="Decição">
+<span class="btn-fill">
 <a class= "ticos" href="{% url 'motor_form' motor.pk %}">Editar</a>
 </span>
-<span class="Decição0">
+<span class="btn-fill">
 <a class="ticos" href="{% url 'motor_delete' motor.pk %}">Excluir</a>
 </span>
 <br><br>
+</div>
+<hr>
 {%endfor%}
 
 {% endblock %}

@@ -4,25 +4,32 @@
 
 {% block content %}
 
-<br>
-<a href="{% url 'sensormotor_form'%}" class="tico">Nova assosiação</a>
-<br><br>
+<div class="topo-lista">
+    <h2>Lista de Associação entre Sensores e Motores</h2><br>
+    <a class = "tico" href="{% url 'sensormotor_form' %}">Nova Associação</a>
+    <br><br>
+    <hr>
+</div>
 
 {%for sensormotor in object_list%}
 
-<ul>
-    <h3>Associação</h3>
-    <li>Id: {{sensormotor.Id}}</li>
-    <li>Id do Motor: {{sensormotor.MotorId}}</li>
-    <li>Id do Sensor: {{sensormotor.SensorId}}</li>
+<div class="topo-lista">
+    <ul>
+        <h3>Associação</h3>
+        <li>Id: {{sensormotor.Id}}</li>
+        <li>Id do Motor: {{sensormotor.MotorId}}</li>
+        <li>Id do Sensor: {{sensormotor.SensorId}}</li>
 
-    
-</ul>
-<li>
+        
+    </ul>
+    <li>
+        <br>
+        <a href="{% url 'sensormotor_form' sensormotor.pk %}" class="btn-fill">Editar</a>
+        <a href="{% url 'sensormotor_delete' sensormotor.pk %}" class="btn-fill">Deletar</a>
+    </li>
     <br>
-    <a href="{% url 'sensormotor_form' sensormotor.pk %}" class="btn-fill">Editar</a>
-    <a href="{% url 'sensormotor_delete' sensormotor.pk %}" class="btn-fill">Deletar</a>
-</li>
+    <hr>
+</div>
 {%endfor%}
 
 {% endblock %}

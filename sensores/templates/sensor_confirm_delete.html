@@ -3,5 +3,11 @@
 {% block title %} Confirmação para deletar sensor {% endblock %}
 
 {% block content %}
-    
+<h2>Tem certeza que deseja excluir o sensor?</h2>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar Exclusão</button>
+    <a href="{% url 'sensor_list' %}">Cancelar</a>
+
+</form>
 {% endblock %}
